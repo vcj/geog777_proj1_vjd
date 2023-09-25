@@ -36,7 +36,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 function getData(map){
     //load the data
-    var data = $.ajax("/data/cancer_tracts.geojson", {
+    var data = $.ajax("https://github.com/vcj/geog777_proj1_vjd/blob/main/data/cancer_tracts.json", {
         dataType: "json",
         success: function(response){
              //create an attributes array
