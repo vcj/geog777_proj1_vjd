@@ -90,11 +90,7 @@ var cellSize = 5;
 var regressionEq;
 
 
-// END DEFINE GLOBAL VARIABLES
-// ----------------------------------------------------------------------x----
 
-// --------------------------------------------------------------------------
-// BUILD MAP
 // add the mapbox tiles to the map object
 map.addLayer(tilesTiles);
 
@@ -104,26 +100,16 @@ addWellSites();
 addCensusTracts();
 addCounties();
 
-// END BUILD MAP
-// --------------------------------------------------------------------------
 
-
-
-// ADD LAYER CONTROLS
-// --------------------------------------------------------------------------
 var legendLayers = {
-    "Nitrate Samples": wellLayer,
+    "Wells Sampled for Nitrates": wellLayer,
     "Census Tracts" : censusLayer,
     "Counties Outline" : countiesLayer
 };
 
 
 L.control.layers(null, legendLayers, {position: 'topleft'}).addTo(map);
-// --------------------------------------------------------------------------
-
-
-// ADD EVENT LISTENERS
-// --------------------------------------------------------------------------
+--
 exponentInput.addEventListener("change", function(){
     exponent = Number(exponentInput.value);
 });
