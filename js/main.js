@@ -3,7 +3,7 @@
 var map = L.map('map', {
     center: [44.997778, -90.130186], zoomControl: false,
     zoom: 7,
-});
+}); 
 
 L.control.zoom({
     position: 'topleft'
