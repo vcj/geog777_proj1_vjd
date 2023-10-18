@@ -191,7 +191,7 @@ function createCountyLayer(response, status, jqXHRobject){
 
 // Rename all functions and variables
 function addCensusTracts(){
-    $.ajax("data/cancer_tracts_join1.json", {
+    $.ajax("data/cancer_tracts_join.geojson", {
         dataType: "json",
         success: createCensusLayer
     });
