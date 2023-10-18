@@ -1,33 +1,83 @@
-<!--GEOG777 Project 1, Vicky Johnson-Dahl-->
+<html>
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-            <title>Nitrates & Cancer in Wisconsin: A Data Explorer</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!--put your external stylesheet links here-->
-        <link rel="stylesheet" href="lib/leaflet.css">
-        <link rel="stylesheet" href="css/style.css">
-        <!--[if IE<9]>
-            <link rel="stylesheet" href="css/style.ie.css">
-        <![endif]-->
-    </head>
+    <title>Nitrates & Cancer in Wisconsin: A Data Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script type= "text/javascript" src = "lib/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/f5facf1ba9.js" crossorigin="anonymous"></script>
 
-    <body>
-        <!--put your initial page content here-->
+</head>
+<body>
+        <div class="container">
+       
+          
+            <div id="map" style="z-index: 1; position: absolute; top: 0; left: 0;"></div>
+            <div id="panel" style="z-index: 3; position: absolute; top: 0px; right:0px;  width: 20%; height: 100%; " ><titletext>Nitrates & Cancer in Wisconsin: A Data Explorer</titletext><br>
+<!--            <p><subtitletext>Is there a relationship between nitrates in wellwater and cancer rates in Wisconsin? Let's find out!</subtitletext></p>-->
 
-<div id="map">
-   
-</div>
-        <!--you can also use this space for internal scripts or stylesheets;
-        place these within <script> or <style> tags-->
+            
+                        <h5>Step 1: Interpolation </h5>
+<!--                <div class="row">-->
+<div class="row">
+                    <label for="exponent"><buttontext>Choose a value for K:</buttontext></label>
+                    <input type="number" value="2" id="exponent" min="1"/>
+                    <label for="cellSize"><buttontext>Choose a hexbin size:</buttontext></label>
+                    <input type="number" value="5" id="cellSize" min="5"/>
+                    <div class="controls">
+                        <button id ="interpolate" class="buttonload btn btn-primary btn-block">
+                            Perform Interpolation<i id = "loader" class="fa-solid fa-globe"></i>
+                        </button><p><subtitletext>Start by choosing a value for k and a size for your hexbins. The k value determines what to consider when estimating values at a location, with smaller k giving more weight to closer points and larger k considering a broader set of neighboring points. </subtitletext></p>
+<!--                        <button id="removeInterpolate" class="buttonload btn btn-primary btn-block">Reset Map & Start Over </button>-->
+                    </div>
+            </div>
 
-        <!--put your external script links here-->
-        <script type="text/javascript" src="lib/jquery-3.7.1.js"></script>
-        <script type="text/javascript" src="lib/leaflet-src.js"></script>
+                        <h5> Step 2: Regression Equation </h5>
+
+                    <div class="controls">
+                        <button disabled id="calculate" class="btn btn-primary btn-block">
+                            <i id = "regressionLoader" ></i>Show Equation
+                        </button><p><subtitletext>This equation describes the relationship between the variables. </subtitletext></p>
+                    </div>
+
+
+                <div id = "results" hidden="false">
+                    <p><buttontext>Regression Equation: y = b1x + b0 
+                        </buttontext></p>
+                    <p><buttontext>Slope (b1): <span id="slope"></span></buttontext></p>
+                    <p><buttontext>Y-Intersect (b0): <span id="intersect"></span></buttontext></p>
+                    
+                </div>
+
+                        <h5 id="errorTitle"> Step 3: Error/Residuals </h5>
+                    <div class="controls">
+                        <button disabled id = "errorButton" class="buttonload btn btn-primary btn-block">
+                            <i id = "errorLoader" ></i> View Error/Residuals 
+                        </button><p><subtitletext>These are the differences between the predicted cancer rates and the actual observed cancer rates for each census tract. The smaller the error, the closer the predicted values are to the actual observed values, indicating a more accurate and precise model fit. </subtitletext></p>
+                    </div>
+            
+                                <div class="controls">
+                        <button id="removeInterpolate" class="buttonload btn btn-primary btn-block">Reset Map & Start Over </button>
+                    </div>
+
+<!--
+                    <label for="cityDropdown"><h5>Select a City:</h5></label>
+                    <select id="cityDropdown">
+                    </select>
+                    <button id="zoomButton"class="buttonload btn btn-primary btn-block"><buttontext>Zoom to City</buttontext></button>
+-->
+
+       <!--        scripts here -->
+       <script type="text/javascript" src="lib/jquery-3.7.1.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script type="text/javascript" src="lib/turf.min.js"></script>
+        <script src='https://unpkg.com/simple-statistics@7.8.3/dist/simple-statistics.min.js'></script>
         <script type="text/javascript" src="js/main.js"></script>
-        
-    </body>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
 </html>
