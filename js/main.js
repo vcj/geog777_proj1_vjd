@@ -415,7 +415,7 @@ function addInterpolateLegend(){
     var grades = [0, 1, 3, 4, 5],
         labels = [];
 	
-	legend.innerHTML += '<b>Results</b><br>' 
+	legend.innerHTML += '<b>Estimated Nitrate Levels</b><br>' 
 
     for (var i = 0; i < grades.length; i++) {
         legend.innerHTML +=
