@@ -64,6 +64,7 @@ var legendControl = L.control({position: 'bottomleft'});
 var exponentInput = document.getElementById("exponent");
 var cellSizeInput = document.getElementById("cellSize");
 var interpolateButton = document.getElementById("interpolate");
+var removeInterpolateButton = document.getElementById("removeInterpolate");
 var calculateButton = document.getElementById("calculate");
 var loader = document.getElementById("loader");
 var regressionLoader = document.getElementById("regressionLoader");
