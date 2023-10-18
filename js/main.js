@@ -1,5 +1,3 @@
-// --------------------------------------------------------------------------
-
 
 // create the map object and set the center and zoom
 var map = L.map('map', {
@@ -95,7 +93,7 @@ var regressionEq;
 
 // --------------------------------------------------------------------------
 // BUILD MAP
-// add the mapbox tiles to the map object
+
 map.addLayer(tilesTiles);
 
 
@@ -104,13 +102,6 @@ addWellSites();
 addCensusTracts();
 addCounties();
 
-// END BUILD MAP
-// --------------------------------------------------------------------------
-
-
-
-// ADD LAYER CONTROLS
-// --------------------------------------------------------------------------
 var legendLayers = {
     "Nitrate Samples": wellLayer,
     "Census Tracts" : censusLayer,
@@ -119,11 +110,7 @@ var legendLayers = {
 
 
 L.control.layers(null, legendLayers, {position: 'topleft'}).addTo(map);
-// --------------------------------------------------------------------------
 
-
-// ADD EVENT LISTENERS
-// --------------------------------------------------------------------------
 exponentInput.addEventListener("change", function(){
     exponent = Number(exponentInput.value);
 });
@@ -196,10 +183,6 @@ errorButton.addEventListener("click", function(){
 
 });
 
-// --------------------------------------------------------------------------
-
-
-// Define Functions
 function addCounties(){
     $.ajax("data/cancer_county.geojson", {
         dataType: "json",
@@ -231,7 +214,6 @@ function createCensusLayer(response, status, jqXHRobject){
 };
 
 
-// Define Functions
 function addWellSites(){
     $.ajax("data/well_nitrate.geojson", {
         dataType: "json",
