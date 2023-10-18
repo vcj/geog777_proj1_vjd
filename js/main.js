@@ -88,12 +88,6 @@ var cellSize = 5;
 var regressionEq;
 
 
-// END DEFINE GLOBAL VARIABLES
-// ----------------------------------------------------------------------x----
-
-// --------------------------------------------------------------------------
-// BUILD MAP
-
 map.addLayer(tilesTiles);
 
 
@@ -197,7 +191,7 @@ function createCountyLayer(response, status, jqXHRobject){
 
 // Rename all functions and variables
 function addCensusTracts(){
-    $.ajax("data/cancer_tracts_join.geojson", {
+    $.ajax("data/cancer_tracts_join1.json", {
         dataType: "json",
         success: createCensusLayer
     });
