@@ -90,7 +90,11 @@ var cellSize = 5;
 var regressionEq;
 
 
+// END DEFINE GLOBAL VARIABLES
+// ----------------------------------------------------------------------x----
 
+// --------------------------------------------------------------------------
+// BUILD MAP
 // add the mapbox tiles to the map object
 map.addLayer(tilesTiles);
 
@@ -100,16 +104,26 @@ addWellSites();
 addCensusTracts();
 addCounties();
 
+// END BUILD MAP
+// --------------------------------------------------------------------------
 
+
+
+// ADD LAYER CONTROLS
+// --------------------------------------------------------------------------
 var legendLayers = {
-    "Wells Sampled for Nitrates": wellLayer,
+    "Nitrate Samples": wellLayer,
     "Census Tracts" : censusLayer,
     "Counties Outline" : countiesLayer
 };
 
 
 L.control.layers(null, legendLayers, {position: 'topleft'}).addTo(map);
---
+// --------------------------------------------------------------------------
+
+
+// ADD EVENT LISTENERS
+// --------------------------------------------------------------------------
 exponentInput.addEventListener("change", function(){
     exponent = Number(exponentInput.value);
 });
@@ -415,7 +429,7 @@ function addInterpolateLegend(){
     var grades = [0, 1, 3, 4, 5],
         labels = [];
 	
-	legend.innerHTML += '<b>Estimated Nitrate Levels</b><br>' 
+	legend.innerHTML += '<b>Expected Nitrate Levels</b><br>' 
 
     for (var i = 0; i < grades.length; i++) {
         legend.innerHTML +=
